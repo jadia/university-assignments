@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<errno.h>
 #include<ctype.h>
+#include<limits.h>
 #define BUFFER_SIZE 256
 void main()
 {
@@ -12,24 +13,21 @@ void main()
   int flag = -1; // checking for double decimal points.
   while(*dummyptr != '\n')
   {
-    // printf("%c hey", *dummyptr);
-    //if(*dummyptr == '0' || *dummyptr == '1' || *dummyptr == '2' || *dummyptr == '3' || *dummyptr == '4' || *dummyptr == '5' || *dummyptr == '6' || *dummyptr == '7' || *dummyptr == '8' || *dummyptr == '9')
-      if(isdigit(*dummyptr))
-        flag = 0;
+    if(isdigit(*dummyptr))
+    flag = 0;
     else if(*dummyptr == '.' && (flag == -1 || flag == 0))
-      {
-        flag = 1;
-      }
+    {
+      flag = 1;
+    }
     else
     {
-      printf("Value must be integer!");
+      printf("Value must be an positive integer or float!");
       exit(1);
     }
     dummyptr++;
   }
   long double ssinput;
   int n = sscanf(inputptr,"%Lf", &ssinput);
-  // printf("\nvalue of n: %d\n",n );
   if(n==1 && (flag == -1 || flag == 0))
   {
     long int intinput = strtol(inputptr, NULL, 10);
