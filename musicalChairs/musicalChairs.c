@@ -83,13 +83,6 @@ void circularRead(node *front, int position)
 
 void dequeue(node **front, node **rear, int position)
 {
-  // if(*front == *rear)
-  // {
-  //   *front = NULL;
-  //   free(*rear);
-  //   *rear = NULL;
-  //   return;
-  // }
   if(*front != *rear)
   {
     node *temp = *front;
@@ -98,6 +91,7 @@ void dequeue(node **front, node **rear, int position)
     {
       printf("0th position given.\n");
       *front = (*front)->next;
+      (*rear)->next = *front;
       free(temp);
       return;
     }
@@ -181,27 +175,14 @@ char test;
     // deleting that element and freeing the memory.
     dequeue(&front,&rear, unfortunateGuy);
       //scanf("%c", &test);
+    printf("\n Normal queue:\n");
     readQueue(front, rear);
-    printf("\n");
+    printf("Circular way:\n");
+    circularRead(front, unfortunateGuy);
 
     //circularRead(front,unfortunateGuy);
     elementsLeft--;
   }
   printf("\n The winner is : %d \n", front->data);
-
-
-
-
-
-
-
-  //
-  // printf("\n The position from where you want to read the data? \n ");
-  // int position;
-  // scanf("%d",&position);
-  //
-  // dequeue(&front,&rear,position-1);
-  //
-  // readQueue(front,rear);
   // circularRead(front,position-1);
 }
