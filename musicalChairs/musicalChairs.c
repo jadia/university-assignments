@@ -1,8 +1,4 @@
-//Practicing circular Queue
-/*
-Notes: We won't use front just work using rear.
-*/
-//fronter files
+//header files
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -14,13 +10,13 @@ typedef struct node{
   struct node *next;
 } node;
 
-int count = 0;
+//int count = 0;
 
 void enqueue(node **front, node **rear, int element)
 {
   if(*front == NULL && *rear == NULL)
   {
-    printf("\n The queue is empty.Inserting first element. : %d \n", element);
+    // printf("\n The queue is empty.Inserting first element. : %d \n", element);
     *rear = (node*) malloc(sizeof(node));
     (*rear)->data = element;
     (*rear)->next = NULL;
@@ -29,7 +25,7 @@ void enqueue(node **front, node **rear, int element)
   }
   else if (*front == *rear)//else if((*front)->next == NULL)
   {
-    printf("\n Only one element present. Adding element. : %d \n", element);
+    // printf("\n Only one element present. Adding element. : %d \n", element);
     *rear = (node*) malloc(sizeof(node));
     (*front)->next = *rear;
     (*rear)->data = element;
@@ -38,7 +34,7 @@ void enqueue(node **front, node **rear, int element)
   }
   else if(*front != *rear)//else if((*front) != NULL && (*front)->next != NULL)
   {
-    printf("\n Seems like there are already elements in the queue! Adding : %d \n", element);
+    // printf("\n Seems like there are already elements in the queue! Adding : %d \n", element);
     node *new = (node*) malloc(sizeof(node));
     (*rear)->next = new;
     new->data = element;
@@ -52,17 +48,17 @@ void enqueue(node **front, node **rear, int element)
 
 void readQueue(node *front, node *rear)
 {
-  count = 0;
+  //count = 0;
   node *temp = front;
   while(temp != rear)
   {
     printf("%d ", temp->data);
     temp = temp->next;
-    count++;
+    // count++;
   }
   printf("%d",temp->data);
-  count++;
-  printf("\n Total no of elements left: %d \n", count);
+  // count++;
+  // printf("\n Total no of elements left: %d \n", count);
 }
 
 
@@ -80,6 +76,14 @@ void circularRead(node *front, int position)
   }while(trace != temp);
 }
 
+int findElement(node *front, int position)
+{
+  node *temp = front;
+  for(int i = 0; i < position; i++)
+  temp = temp->next;
+  return(temp->data);
+}
+
 
 void dequeue(node **front, node **rear, int position)
 {
@@ -89,7 +93,7 @@ void dequeue(node **front, node **rear, int position)
     node *prev = *front;
     if(!position)
     {
-      printf("0th position given.\n");
+      // printf("0th position given.\n");
       *front = (*front)->next;
       (*rear)->next = *front;
       free(temp);
@@ -103,15 +107,13 @@ void dequeue(node **front, node **rear, int position)
     }
     if(temp == *rear)
     {
-      printf("last position given.\n");
+      // printf("last position given.\n");
       prev->next = *front;
       free(*rear);
       *rear = prev;
       return;
     }
-    printf("\n Removing given node. \n");
-    // while(temp->next != *rear)
-    //   temp = temp->next;
+    // printf("\n Removing given node. \n");
     prev->next = temp->next;
     free(temp);
     return;
@@ -127,6 +129,17 @@ int randomGenerate(int n)
   return(rand() % n);
 }
 
+int sizeOfQueue(node *front, node *rear)
+{
+  int count = 0;
+  node *temp = front;
+  while(temp != rear)
+  {
+    temp = temp->next;
+    count++;
+  }
+  return(++count);
+}
 
 void main()
 {
@@ -143,7 +156,7 @@ void main()
   int buffer; // var to hold elements comming from the file
 
   fscanf(fp, "%d", &n);
-  printf("The number of elements are: %d \n", n);
+  printf("The number of elements are: %d \n \n", n);
 
   node *front = NULL;
   node *rear = NULL;
@@ -160,29 +173,26 @@ void main()
 
   readQueue(front,rear);
 
-char test;
-
   int elementsLeft = n;
   for(int j = 1; j < n; j++)
   {
     int unfortunateGuy;
     unfortunateGuy = randomGenerate(elementsLeft);
+    printf("\n\nQueue: ");
+    readQueue(front, rear);
+    printf("\nKicking out: %d \n", findElement(front,unfortunateGuy));
 
-    printf("\n The unfortunateGuy is : %d \n", unfortunateGuy+1);
-
-    // moving to the unfortunate guy.
 
     // deleting that element and freeing the memory.
     dequeue(&front,&rear, unfortunateGuy);
-      //scanf("%c", &test);
-    printf("\n Normal queue:\n");
-    readQueue(front, rear);
-    printf("Circular way:\n");
-    circularRead(front, unfortunateGuy);
 
-    //circularRead(front,unfortunateGuy);
+    // printf("\n Normal queue:\n");
+    // readQueue(front, rear);
+    // printf("Circular way:\n");
+    circularRead(front, unfortunateGuy);
+    printf("\nThe size of queue now: %d", sizeOfQueue(front, rear));
     elementsLeft--;
   }
-  printf("\n The winner is : %d \n", front->data);
+  printf("\nThe winner is : %d \n", front->data);
   // circularRead(front,position-1);
 }
