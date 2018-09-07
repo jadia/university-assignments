@@ -50,6 +50,7 @@ void enqueue(node **front, node **rear, int element)
 
 void readQueue(node *front, node *rear)
 {
+  count = 0;
   node *temp = front;
     while(temp != rear)
     {
@@ -75,6 +76,35 @@ void circularRead(node *front, int position)
     printf("%d ", trace->data);
     trace = trace->next;
   }while(trace != temp);
+}
+
+
+void dequeue(node **front, node **rear, int position)
+{
+  if(*front == *rear)
+  {
+    *front = NULL;
+    free(*rear);
+    *rear = NULL;
+    return;
+  }
+  else if(*front != *rear)
+  {
+    node *temp = *front;
+    node *prev = *front;
+    while(position)
+    {
+      prev = temp;
+      temp = temp->next;
+      position--;
+    }
+    printf("\n Removing given node. \n");
+    // while(temp->next != *rear)
+    //   temp = temp->next;
+    prev->next = temp->next;
+    free(temp);
+    return;
+  }
 }
 
 void main()
@@ -113,5 +143,9 @@ void main()
   printf("\n The position from where you want to read the data? \n ");
   int position;
   scanf("%d",&position);
-  circularRead(front,position);
+
+  dequeue(&front,&rear,position-1);
+
+  readQueue(front,rear);
+  circularRead(front,position-1);
 }
