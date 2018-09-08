@@ -10,31 +10,27 @@ typedef struct node{
   struct node *next;
 } node;
 
-//int count = 0;
 
 void enqueue(node **front, node **rear, int element)
 {
-  if(*front == NULL && *rear == NULL)
+  if(*front == NULL && *rear == NULL) // if queue is empty
   {
-    // printf("\n The queue is empty.Inserting first element. : %d \n", element);
     *rear = (node*) malloc(sizeof(node));
     (*rear)->data = element;
     (*rear)->next = NULL;
     *front = *rear;
     return;
   }
-  else if (*front == *rear)//else if((*front)->next == NULL)
+  else if (*front == *rear) // if only one node is present
   {
-    // printf("\n Only one element present. Adding element. : %d \n", element);
     *rear = (node*) malloc(sizeof(node));
     (*front)->next = *rear;
     (*rear)->data = element;
     (*rear)->next = *front;
     return;
   }
-  else if(*front != *rear)//else if((*front) != NULL && (*front)->next != NULL)
+  else if(*front != *rear) // if more than one node is present
   {
-    // printf("\n Seems like there are already elements in the queue! Adding : %d \n", element);
     node *new = (node*) malloc(sizeof(node));
     (*rear)->next = new;
     new->data = element;
@@ -43,22 +39,19 @@ void enqueue(node **front, node **rear, int element)
     (*rear)->next = *front;
     return;
   }
-  printf("Enqueue Failed! You should die! ");
+  printf("Enqueue Failed!");
+  exit(1);
 }
 
 void readQueue(node *front, node *rear)
 {
-  //count = 0;
   node *temp = front;
   while(temp != rear)
   {
     printf("%d ", temp->data);
     temp = temp->next;
-    // count++;
   }
   printf("%d",temp->data);
-  // count++;
-  // printf("\n Total no of elements left: %d \n", count);
 }
 
 
@@ -93,7 +86,7 @@ void dequeue(node **front, node **rear, int position)
     node *prev = *front;
     if(!position)
     {
-      // printf("0th position given.\n");
+      // if 0th position given to remove
       *front = (*front)->next;
       (*rear)->next = *front;
       free(temp);
@@ -107,19 +100,20 @@ void dequeue(node **front, node **rear, int position)
     }
     if(temp == *rear)
     {
-      // printf("last position given.\n");
+      // if last position given to remove
       prev->next = *front;
       free(*rear);
       *rear = prev;
       return;
     }
-    // printf("\n Removing given node. \n");
+//removing the node
     prev->next = temp->next;
     free(temp);
     return;
   }
   else
   printf("Trying to dequeue last node too.!");
+  exit(1);
 }
 
 
@@ -186,13 +180,9 @@ void main()
     // deleting that element and freeing the memory.
     dequeue(&front,&rear, unfortunateGuy);
 
-    // printf("\n Normal queue:\n");
-    // readQueue(front, rear);
-    // printf("Circular way:\n");
     circularRead(front, unfortunateGuy);
     printf("\nThe size of queue now: %d", sizeOfQueue(front, rear));
     elementsLeft--;
   }
   printf("\nThe winner is : %d \n", front->data);
-  // circularRead(front,position-1);
 }
