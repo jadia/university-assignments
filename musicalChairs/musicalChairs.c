@@ -1,21 +1,19 @@
 //header files
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
 #include<stdbool.h>
+#include<limits.h>
 
 #define INPUTFILE "inputFile.txt"
+#define BUFFER_SIZE 256
+
 
 typedef struct node{
   int data;
   struct node *next;
 } node;
-
-bool validation(char input)
-{
-
-}
-
 
 void enqueue(node **front, node **rear, int element)
 {
@@ -141,6 +139,14 @@ int sizeOfQueue(node *front, node *rear)
   return(++count);
 }
 
+bool validation(long long int *n)
+{
+  if(*n < INT_MAX)
+  return true;
+  else
+  return false;
+}
+
 /*--------------------------
 main program
 -------------------------- */
@@ -156,48 +162,56 @@ void main()
     exit(1);
   }
 
-  int n; // number of elements
+  long long int n; // number of elements
   int buffer; // var to hold elements comming from the file
   int testCases;
   int unfortunateGuy;
   fscanf(fp,"%d", &testCases);
-while(testCases)
-{
-  fscanf(fp, "%d", &n);
-  printf("\n---------------------\nThe number of elements are: %d \n \n", n);
-
-  node *front = NULL;
-  node *rear = NULL;
-
-  for (int i = 0; i < n; i++)
+  while(testCases)
   {
-    fscanf(fp, "%d", &buffer);
-    enqueue(&front,&rear, buffer);
+    fscanf(fp, "%lld", &n);
+    if(!validation(&n))
+    {
+      printf("\n\n--------------------\n\nNumber of elements exceeded the limit. \n\n-----------------------\n");
+      testCases--;
+      continue;
+    }
+    printf("\n---------------------\nThe number of elements are: %lld \n \n", n);
+
+    node *front = NULL;
+    node *rear = NULL;
+
+    for (int i = 0; i < n; i++)
+    {
+      fscanf(fp, "%d", &buffer);
+      enqueue(&front,&rear, buffer);
+    }
+
+
+    printf("The elements are: ");
+
+    // Reading all the elements of the queue.
+
+    readQueue(front,rear);
+
+    int elementsLeft = n;
+    for(int j = 1; j < n; j++)
+    {
+      unfortunateGuy = randomGenerate(elementsLeft);
+      printf("\n\nQueue: ");
+      readQueue(front, rear);
+      printf("\nKicking out: %d \n", findElement(front,unfortunateGuy));
+
+
+      // deleting that element and freeing the memory.
+      dequeue(&front,&rear, unfortunateGuy);
+
+      circularRead(front, unfortunateGuy);
+      printf("\nThe size of queue now: %d", sizeOfQueue(front, rear));
+      elementsLeft--;
+    }
+    printf("\nThe winner is : %d \n", front->data);
+
+    testCases--;
   }
-
-  printf("The elements are: ");
-
-  // Reading all the elements of the queue.
-
-  readQueue(front,rear);
-
-  int elementsLeft = n;
-  for(int j = 1; j < n; j++)
-  {
-    unfortunateGuy = randomGenerate(elementsLeft);
-    printf("\n\nQueue: ");
-    readQueue(front, rear);
-    printf("\nKicking out: %d \n", findElement(front,unfortunateGuy));
-
-
-    // deleting that element and freeing the memory.
-    dequeue(&front,&rear, unfortunateGuy);
-
-    circularRead(front, unfortunateGuy);
-    printf("\nThe size of queue now: %d", sizeOfQueue(front, rear));
-    elementsLeft--;
-  }
-  printf("\nThe winner is : %d \n", front->data);
-  testCases--;
-}
 }
