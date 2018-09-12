@@ -135,6 +135,10 @@ int sizeOfQueue(node *front, node *rear)
   return(++count);
 }
 
+/*--------------------------
+main program
+-------------------------- */
+
 void main()
 {
   /* Taking input from the file */
