@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<stdbool.h>
 
 #define INPUTFILE "inputFile.txt"
 
@@ -9,6 +10,11 @@ typedef struct node{
   int data;
   struct node *next;
 } node;
+
+bool validation(char input)
+{
+
+}
 
 
 void enqueue(node **front, node **rear, int element)
@@ -106,7 +112,7 @@ void dequeue(node **front, node **rear, int position)
       *rear = prev;
       return;
     }
-//removing the node
+    //removing the node
     prev->next = temp->next;
     free(temp);
     return;
@@ -152,9 +158,13 @@ void main()
 
   int n; // number of elements
   int buffer; // var to hold elements comming from the file
-
+  int testCases;
+  int unfortunateGuy;
+  fscanf(fp,"%d", &testCases);
+while(testCases)
+{
   fscanf(fp, "%d", &n);
-  printf("The number of elements are: %d \n \n", n);
+  printf("\n---------------------\nThe number of elements are: %d \n \n", n);
 
   node *front = NULL;
   node *rear = NULL;
@@ -174,7 +184,6 @@ void main()
   int elementsLeft = n;
   for(int j = 1; j < n; j++)
   {
-    int unfortunateGuy;
     unfortunateGuy = randomGenerate(elementsLeft);
     printf("\n\nQueue: ");
     readQueue(front, rear);
@@ -189,4 +198,6 @@ void main()
     elementsLeft--;
   }
   printf("\nThe winner is : %d \n", front->data);
+  testCases--;
+}
 }
