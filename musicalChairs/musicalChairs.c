@@ -1,5 +1,23 @@
-//header files
+/*
+Musical Chairs problem:
+input:
+<number of TestCases>
+<number of elements>
+<E1> <E2> <E3> ... <En>
 
+output:
+1. Remove an element randomly
+2. show the output in circular fashion.
+3. Announce the winner in the end.
+
+
+This code accepts only positive integers.
+
+The code handles the exections if floating point, characters and bigger numbers are given.
+*/
+
+
+//header files
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -10,6 +28,8 @@
 
 #define INPUTFILE "inputFile.txt"
 #define BUFFER_SIZE 256
+
+// Global variables
 
 bool isSpace = false;
 
@@ -150,44 +170,26 @@ bool validationOfn(long long int *n)
   return false;
 }
 
-bool validation(char *c)
-{
-  isSpace = false;
-  if(*c==' ')
-  {
-    isSpace = true;
-    return true;
-  }
-  else if(isdigit(*c))
-  {
-    return true;
-  }
-  else
-  {
-    printf("Some problem with validation. char is : %c\n", *c);
-    exit(1);
-  }
-}
 
 bool validationOfArr(char *ptr)
 {
   while(*ptr != '\0')
   {
     if(*ptr == '.')
-      {
-        printf("Floating point not allowed.\n");
-        return false;
-      }
+    {
+      printf("Floating point not allowed!\n");
+      return false;
+    }
     if(!isdigit(*ptr))
-      {
-        printf("not digit.\n");
-        return false;
-      }
+    {
+      printf("Invalid input.\n");
+      return false;
+    }
     ptr++;
   }
-  //printf("Something wrong with validation of Arr");
   return true;
 }
+
 /*--------------------------
 main program
 -------------------------- */
@@ -205,78 +207,68 @@ void main()
 
   long long int n; // number of elements
   int buffer; // var to hold elements comming from the file
-  char charbuffer = '0';
   int testCases;
-  int unfortunateGuy;
-  int breakout = 0;
-  //char arr[30];
-  char *arr = (char *) malloc(30);
-  int place = 0;
+  int count = 1; // to show testcase number
+  int unfortunateGuy; // element to be removed
+  char *arr = (char *) malloc(BUFFER_SIZE); // where the element will be stored
   fscanf(fp,"%d", &testCases);
   while(testCases)
   {
+    printf("\n\n\t***TestCase: %d ***\n\n", count);
     fscanf(fp, "%lld", &n);
-    if(!validationOfn(&n))
+    if(!validationOfn(&n)) // checking the size of n.
     {
-      printf("\n\n--------------------\n\nNumber of elements exceeded the limit. \n\n-----------------------\n");
+      printf("\nNumber of elements exceeded the limit.\n");
       testCases--;
+      //fgets to read past the array below the n to reach next testcase
+      fgets(arr, BUFFER_SIZE, fp);
+      fgets(arr, BUFFER_SIZE, fp);
+      for(int i = 0; i <BUFFER_SIZE; i++) //making all values of buffer to NULL.
+      arr[i] = '\0';
+      count++;
       continue;
     }
-    printf("\n---------------------\nThe number of elements are: %lld \n \n", n);
+    printf("\nThe number of elements are: %lld \n\n", n);
 
     node *front = NULL;
     node *rear = NULL;
-
-    // for (int i = 0; i < n; i++)
-    // {
-    //   fscanf(fp, "%d", &buffer);
-    //   enqueue(&front,&rear, buffer);
-    // }
-for (int i = 0; i < n; i++)
-{
-fscanf(fp, "%s", arr);
-if(!validationOfArr(arr))
-{
-  printf("Array invalid \n");
-  exit(1);
-}
-buffer = atoi(arr);
-enqueue(&front,&rear, buffer);
-}
-
-    /*
-    while(charbuffer != '\n')
+    bool invalidInput = false;
+    for (int i = 0; i < n; i++)
     {
-      fscanf(fp, "%c", &charbuffer);
-      printf("Value of c: %c\n", charbuffer);
-      if(!validation(&charbuffer))
+      fscanf(fp, "%s", arr);
+      if(!validationOfArr(arr))
       {
-        printf("\n\n--------------------\n\nInvalid input. \n\n-----------------------\n");
-        testCases--;
-        breakout = 1;
+        printf("Only positive integers are allowed. \n");
+        //exit(1);
+        invalidInput = true;
         continue;
       }
-      if(isSpace)
-      {
-      buffer = atoi(arr);
-      enqueue(&front,&rear, buffer);
+      if(invalidInput)
       continue;
+      buffer = atoi(arr);
+      if(buffer == -1)
+      {
+        invalidInput = true;
+        printf("Size of element more than limit.\n");
+        continue;
+      }
+      enqueue(&front,&rear, buffer);
     }
-    arr[place] = charbuffer;
-    place++;
+    if(invalidInput) // cleanup
+    {
+      for(int i = 0; i <BUFFER_SIZE; i++) //making all values of buffer to NULL.
+      arr[i] = '\0';
+      count++;
+      testCases--;
+      continue; // skip further code because the element earlier was invalid
     }
-    if(breakout)
-    continue;
-
-    */
-
     printf("The elements are: ");
 
     // Reading all the elements of the queue.
 
     readQueue(front,rear);
 
-    int elementsLeft = n;
+    int elementsLeft = n; // no of elements left
     for(int j = 1; j < n; j++)
     {
       unfortunateGuy = randomGenerate(elementsLeft);
@@ -292,10 +284,10 @@ enqueue(&front,&rear, buffer);
       printf("\nThe size of queue now: %d", sizeOfQueue(front, rear));
       elementsLeft--;
     }
-    printf("\nThe winner is : %d \n", front->data);
-    place = 0;
-    for(int i = 0; i < 30; i++)
-      arr[i] = '\0';
+    printf("\n\n ### The winner is : %d ###\n\n", front->data);
+    for(int i = 0; i < BUFFER_SIZE; i++)
+    arr[i] = '\0';
+    count++;
     testCases--;
   }
 }
