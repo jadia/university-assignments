@@ -5,10 +5,13 @@
 #include<time.h>
 #include<stdbool.h>
 #include<limits.h>
+#include<string.h>
+#include<ctype.h>
 
 #define INPUTFILE "inputFile.txt"
 #define BUFFER_SIZE 256
 
+bool isSpace = false;
 
 typedef struct node{
   int data;
@@ -139,7 +142,7 @@ int sizeOfQueue(node *front, node *rear)
   return(++count);
 }
 
-bool validation(long long int *n)
+bool validationOfn(long long int *n)
 {
   if(*n < INT_MAX)
   return true;
@@ -147,6 +150,44 @@ bool validation(long long int *n)
   return false;
 }
 
+bool validation(char *c)
+{
+  isSpace = false;
+  if(*c==' ')
+  {
+    isSpace = true;
+    return true;
+  }
+  else if(isdigit(*c))
+  {
+    return true;
+  }
+  else
+  {
+    printf("Some problem with validation. char is : %c\n", *c);
+    exit(1);
+  }
+}
+
+bool validationOfArr(char *ptr)
+{
+  while(*ptr != '\0')
+  {
+    if(*ptr == '.')
+      {
+        printf("Floating point not allowed.\n");
+        return false;
+      }
+    if(!isdigit(*ptr))
+      {
+        printf("not digit.\n");
+        return false;
+      }
+    ptr++;
+  }
+  //printf("Something wrong with validation of Arr");
+  return true;
+}
 /*--------------------------
 main program
 -------------------------- */
@@ -164,13 +205,18 @@ void main()
 
   long long int n; // number of elements
   int buffer; // var to hold elements comming from the file
+  char charbuffer = '0';
   int testCases;
   int unfortunateGuy;
+  int breakout = 0;
+  //char arr[30];
+  char *arr = (char *) malloc(30);
+  int place = 0;
   fscanf(fp,"%d", &testCases);
   while(testCases)
   {
     fscanf(fp, "%lld", &n);
-    if(!validation(&n))
+    if(!validationOfn(&n))
     {
       printf("\n\n--------------------\n\nNumber of elements exceeded the limit. \n\n-----------------------\n");
       testCases--;
@@ -181,12 +227,48 @@ void main()
     node *front = NULL;
     node *rear = NULL;
 
-    for (int i = 0; i < n; i++)
-    {
-      fscanf(fp, "%d", &buffer);
-      enqueue(&front,&rear, buffer);
-    }
+    // for (int i = 0; i < n; i++)
+    // {
+    //   fscanf(fp, "%d", &buffer);
+    //   enqueue(&front,&rear, buffer);
+    // }
+for (int i = 0; i < n; i++)
+{
+fscanf(fp, "%s", arr);
+if(!validationOfArr(arr))
+{
+  printf("Array invalid \n");
+  exit(1);
+}
+buffer = atoi(arr);
+enqueue(&front,&rear, buffer);
+}
 
+    /*
+    while(charbuffer != '\n')
+    {
+      fscanf(fp, "%c", &charbuffer);
+      printf("Value of c: %c\n", charbuffer);
+      if(!validation(&charbuffer))
+      {
+        printf("\n\n--------------------\n\nInvalid input. \n\n-----------------------\n");
+        testCases--;
+        breakout = 1;
+        continue;
+      }
+      if(isSpace)
+      {
+      buffer = atoi(arr);
+      enqueue(&front,&rear, buffer);
+      continue;
+    }
+    arr[place] = charbuffer;
+    place++;
+    }
+    if(breakout)
+    continue;
+
+    */
 
     printf("The elements are: ");
 
@@ -211,7 +293,9 @@ void main()
       elementsLeft--;
     }
     printf("\nThe winner is : %d \n", front->data);
-
+    place = 0;
+    for(int i = 0; i < 30; i++)
+      arr[i] = '\0';
     testCases--;
   }
 }
