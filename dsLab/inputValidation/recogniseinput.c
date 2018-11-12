@@ -10,14 +10,6 @@ Does not save any memory by realloc. That is yet to be done.
 #include<ctype.h>
 #include<limits.h>
 #define BUFFER_SIZE 256
-void main()
-{
-  bool validation(char *);
-  bool range_valid(long long, int);
-  char *input = (char*) malloc(256);
-  while(!validation(input));
-
-}
 
 /*
 This range function is useful when I'll add memory saving feature.
@@ -89,4 +81,15 @@ bool validation(char *inputptr)
     printf("Float : %Lf\n",floatinput);
   }
   return true;
+}
+
+
+
+void main()
+{
+  // bool validation(char *);
+  // bool range_valid(long long, int);
+  char *input = (char*) malloc(256);
+  while(!validation(input));
+
 }
