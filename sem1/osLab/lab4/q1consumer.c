@@ -39,41 +39,32 @@ void main()
 	int n = 2; // two producer to read from
 	while(n--)
 	{
-	sem_wait(S1);
-	sem_wait(S3);
-	printf("\nData read from the memory: ");
+		sem_wait(S1);
+		sem_wait(S3);
+		printf("\nData read from the memory: ");
 
-	int i=0;
+		int i=0;
 
-	while(str[i])
-	{
-		printf("%c ", str[i]);
-		i++;
+		/*while(str[i])
+		{
+			printf("%c ", str[i]);
+			i++;
+		}*/
+		sem_post(S2);
+		sem_post(S1);
+
+		FILE *fp;
+		if((fp = fopen(OUTPUTFILE,"a+")) == NULL)
+		{
+			perror("Input file: ");
+			exit(1);
+		}
+
+		//	i = 0;
+		while(str[i])
+		{
+			fprintf(fp,"%c ",str[i]);
+			i++;
+		}
 	}
-	sem_post(S2);
-	sem_post(S1);
-	/*if(!n)
-	{
-		sem_unlink("S1");
-		sem_unlink("S2");
-		sem_unlink("S3");
-	}*/
-}
-
-/*
-	FILE *fp;
-	if((fp = fopen(OUTPUTFILE,"w")) == NULL)
-	{
-		perror("Input file: ");
-		exit(1);
-	}
-
-//	i = 0;
-	while(str[i])
-	{
-		fprintf(fp,"%c ",str[i]);
-		i++;
-	}
-*/
-
 }

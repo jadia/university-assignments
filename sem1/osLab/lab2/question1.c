@@ -8,19 +8,19 @@ pid_t pid;
 void triedToKill(int sig)
 {
 	printf("\n Did you tried to kill me? %d \n", getpid());
-//	exit(1);
+	exit(1);
 }
 
 void triedToQuit(int sig)
 {
 	printf("\n I tried using Quit! \n");
-//	exit(1);
+	exit(1);
 }
 
 void main()
 {
 	signal(SIGINT,triedToKill);
-	signal(SIGQUIT,SIG_IGN);
+	signal(SIGQUIT,triedToQuit);
 	pid = fork();
 	
 	if(pid == 0) // child runs this
@@ -31,7 +31,7 @@ void main()
 	}
 	else if (pid > 0) // parent runs this
 	{
-	//	kill(pid,SIGINT);
+//		kill(pid,SIGQUIT);
 		printf("I'm a parent. Pid: %d \n",getpid());
 		sleep(100);
 	}
