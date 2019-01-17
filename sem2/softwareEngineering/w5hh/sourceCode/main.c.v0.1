@@ -2,15 +2,7 @@
 Program to insert, calculate and retrieve student records.
 Author: Nitish Jadia
 Date: 2019-01-15
-Version: v0.2
-Changelog:
-		v0.2:
-			1. Made output.txt -> output.dat
-			2. validation to input added.
-			3. pass/fail added.
-		v0.1:
-			1. read and write from and to the file added.
-			2. initial commit.
+Version: v0.1
 */
 
 /*Header files*/
@@ -41,61 +33,8 @@ void calculate(student_info *store)
 {
 	store->totalMarks = store->physics+store->chemistry+store->maths;
 	store->avgMarks = store->totalMarks/3;
-	if(store->totalMarks < 150)
-		store->result = false;
-	else
-		store->result = true;
 }
 
-bool input_validation(student_info *store, FILE **ifp, FILE **ofp)
-{
-	char buffer[40];
-	
-	fscanf(*ifp, "%s", store->name);
-	fscanf(*ifp, "%s", store->addr);
-	fscanf(*ifp, "%s", store->rollNo);
-	
-	fscanf(*ifp, "%s", buffer);
-	if(sscanf(buffer,"%f",&store->physics) == 0)
-	{
-		printf("Returning false1 \n");
-		return false;
-	}
-	else if( store->physics > 100 || store->physics < 0)
-	{
-		printf("Invalid value. Please enter value from 0-100");
-		return false;
-	}
-	fscanf(*ifp, "%s", buffer);
-	if(sscanf(buffer,"%f",&store->chemistry) == 0)
-	{
-		printf("Returning false2 \n");
-		return false;
-	}
-		else if( store->chemistry > 100 || store->chemistry < 0)
-	{
-		printf("Invalid value. Please enter value from 0-100");
-		return false;
-	}
-	fscanf(*ifp, "%s", buffer);
-	if(sscanf(buffer,"%f",&store->maths) == 0)
-	{
-		printf("Returning false3 \n");
-		return false;
-	}
-		else if( store->maths > 100 || store->maths < 0)
-	{
-		printf("Invalid value. Please enter value from 0-100");
-		return false;
-	}
-	return true;
-	// fscanf(ifp, "%s", store->name);
-	// fscanf(ifp, "%s", store->addr);
-	// fscanf(ifp, "%s", store->rollNo);
-	// fscanf(ifp, "%f", &store->physics);
-	// fscanf(ifp, "%f", &store->chemistry);
-	// fscanf(ifp, "%f", &store->maths);
-}
 
 /* main */
 int main()
@@ -120,11 +59,12 @@ int main()
 	char choice = 'n';
 	while(addMore)
 	{
-		/* input_validation is false if input is invalid, so try again.*/
-		while(!input_validation(&store, &ifp, &ofp))
-		{
-			printf("\nPlease enter valid input.");
-		}
+		fscanf(ifp, "%s", store.name);
+		fscanf(ifp, "%s", store.addr);
+		fscanf(ifp, "%s", store.rollNo);
+		fscanf(ifp, "%f", &store.physics);
+		fscanf(ifp, "%f", &store.chemistry);
+		fscanf(ifp, "%f", &store.maths);
 		calculate(&store);
 		printf("Data: %s:%s:%s:%f:%f:%f:%f:%f", store.name, store.addr, store.rollNo, store.physics,
 		store.chemistry, store.maths, store.totalMarks, store.avgMarks);
@@ -161,17 +101,10 @@ int main()
 		exit(1);
 	}
 
-	printf("Reading all records: \n");
-	while(fread(&store, sizeof(student_info), 1, db))
-	{
-
-        printf ("\n\tName = %s addr = %s \n\tRollNo: %s \n\tPCM: %lf, %lf and %lf \n\t Total Marks: %lf avg Marks: %lf",store.name, store.addr, store.rollNo, store.physics,
+	printf("Reading file: \n");
+	while(fread(&store, sizeof(student_info), 1, db)) 
+        printf ("name = %s addr = %s rollNo: %s %lf %lf %lf %lf %lf\n",store.name, store.addr, store.rollNo, store.physics,
 		store.chemistry, store.maths, store.totalMarks, store.avgMarks); 
-		printf("\n\t Result: ");
-		if(store.result)
-			printf("Pass\n");
-		else
-			printf("Fail\n");
-	}
+
 
 }
