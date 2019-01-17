@@ -1,0 +1,47 @@
+The observation of the time taken by programs of different time complexities having same input value.
+
+Linear Time Complexity:
+Input Value		Time Taken(s)
+10			<0.000001
+100			<0.000001
+1000			0.000004
+10000			0.000045
+100000			0.000254
+
+
+Logarithmic Time Complexity:
+Input Value		Time Taken
+10			<0.000001
+100			<0.000001
+1000			<0.000001
+10000			<0.000001
+100000			<0.000001
+
+
+Quadratic Time Complexity:
+Input Value		Time Taken
+10			<0.000001
+100			0.000027
+1000			0.002623
+10000			0.226682
+100000			23.855382
+
+
+Cubic Time Complexity:
+Input Value		Time Taken
+5			<0.000001
+10			0.000003
+15			0.000007
+20			0.000019
+25			0.000031
+
+Exponential Time Complexity:
+Input Value		Time Taken
+5			<0.000001
+10			<0.000001
+15			0.000011
+20			0.000112
+25			0.001280
+
+
+Observations by - Nitish Jadia(18MCMT13)
