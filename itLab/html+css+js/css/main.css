@@ -1,0 +1,89 @@
+html {
+    margin-left: 32%;
+}
+ 
+.heading {
+    margin-left: 9%;
+    color: rgb(88, 87, 87);
+    font-family: 'ABeeZee';
+}
+
+.logo {
+    margin-left: 12%;
+}
+
+
+.form {
+    display: table-cell;
+    vertical-align:middle;
+    border:1px solid rgb(121, 121, 121);
+    padding: 20px;
+    box-shadow: 7px 10px 34px 1px rgba(0, 0, 0, 0.68);
+
+}
+
+input {
+    border: none;
+    border-bottom: 3px solid;
+    border-bottom-color: tomato;
+    margin-bottom: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
+    font-size: 25px;
+    padding: 10px;
+}
+
+.required {
+    color: red;
+    font-size: 14px;
+}
+
+#submit {
+    background-color: green;
+    border: none;
+    border-radius: 2px;
+    font-size: 30px;
+    color: aliceblue;
+    margin: 15px 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#submit:hover {
+    font-size: 32px;
+    padding-top: 6px;
+    background-color: darkgreen;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#reset {
+    background-color: red;
+    border: none;
+    border-radius: 2px;
+    font-size: 30px;
+    color: aliceblue;
+    margin: 15px 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#reset:hover {
+    font-size: 32px;
+    padding-top: 6px;
+    background-color: darkred;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+select {
+    border-radius: 5px;
+    margin: 8px;
+    font-size: 25px;
+    padding: 5px;
+    border: none;
+}
+
+.footer {
+    color: darkgray;
+    margin-left: 20%;
+    margin-top: 50px;
+}

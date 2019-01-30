@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OpenSource | Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="opensource.png">
+    </div>
+    <h1 class="heading">
+        Join the community today! </h1>
+    <div class="form">
+        <form name="registerForm" action="#" method="GET" onsubmit="return validateForm()">
+            <div class="required" id="req_username"></div>
+            <input id="username" type="text" placeholder="username" required><br>
+            <div class="required" id="req_Firstname"></div>
+            <input id="Firstname" type="text" placeholder="Firstname" required><br>
+            <div class="required" id="req_Lastname"></div>
+            <input id="Lastname" type="text" placeholder="Lastname" required><br>
+            <div class="required" id="req_email"></div>
+            <input id="email" type="text" placeholder="email">
+            <div class="required" id="req_mobile"></div>
+            <input id="mobile" type="text" placeholder="mobile number">
+            <input type="date" style="color: rgb(153, 151, 151);"><br>
+            <div class="required" id="req_password"></div>
+            <input id="password" type="password" placeholder="password" required><br>
+            <div class="required" id="req_confirmPassword"></div>
+            <input id="confirmPassword" type="password" placeholder="confirm password" required><br>
+            <button type="submit" id="submit">Submit</button>
+            <button type="reset" id="reset" onclick="clearRequired()">Reset</button>
+        </form>
+    </div>
+    <div class="footer">
+        <p>Copyright &copy; 2019 Nitish Jadia</p>
+    </div>
+</body>
+
+</html>

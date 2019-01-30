@@ -1,0 +1,12 @@
+Nitish
+Bhopal,MP
+18mcmt13
+14 15 34
+Rishi
+Hyderabad,Telangana
+18mcmt12
+15 64 55
+Amrit
+Kolkata,Bengol
+18mcmi01
+54 65 55

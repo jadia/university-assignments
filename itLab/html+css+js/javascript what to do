@@ -1,0 +1,20 @@
+1. checking all empty fields |  done
+2. name should be b/w 5-15 char | done
+3. password length min 6 char and both password and confirm pass equal | done
+4. mobile no should be number | done
+5. name should only contain alphabets
+
+<html>
+<head>
+<script language = "javascript">
+function checkempty()
+{       |-> form name
+    if(form1.fn.value=="")
+    {
+        alert("Please enter your name."); // or alert("First name should not be blank");
+        form1.fn.focus();
+        return false;
+    }
+    if(form1.ln.value=="")
+    
+}
