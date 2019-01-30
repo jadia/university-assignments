@@ -13,6 +13,7 @@ function validateForm() {
         document.getElementById('req_username').innerHTML = "Username length must be greater than 3.";
         flag = false;
     }
+
     // First name
     var flength = document.getElementById('Firstname').value.length;
     if (!document.getElementById('Firstname').value) {
@@ -26,6 +27,15 @@ function validateForm() {
         flag = false;
     }
 
+    // alphabet check
+    var firstNameValue = document.getElementById('Firstname').value;
+    var alphabets = /^[a-zA-Z]+$/;
+    if (!firstNameValue.match(alphabets)) {
+        document.getElementById('req_Firstname').innerHTML = "Name should contain only alphabets.";
+        flag = false;
+    }
+
+
     // Last name
     if (!document.getElementById('Lastname').value) {
         document.getElementById('req_Lastname').innerHTML = "*required field";
@@ -35,6 +45,13 @@ function validateForm() {
     // min and max length
     if (llength < 3 || llength > 15) {
         document.getElementById('req_Lastname').innerHTML = "Name should be atleast 3 and atmost 15 character long.";
+        flag = false;
+    }
+    // alphabet check
+    var lastNameValue = document.getElementById('Lastname').value;
+    var alphabets = /^[a-zA-Z]+$/;
+    if (!lastNameValue.match(alphabets)) {
+        document.getElementById('req_Lastname').innerHTML = "Name should contain only alphabets.";
         flag = false;
     }
 
