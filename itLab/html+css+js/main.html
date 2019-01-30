@@ -12,34 +12,44 @@
 </head>
 
 <body>
-    <div class="logo">
-        <img src="opensource.png">
-    </div>
-    <h1 class="heading">
-        Join the community today! </h1>
-    <div class="form">
-        <form name="registerForm" action="#" method="GET" onsubmit="return validateForm()">
-            <div class="required" id="req_username"></div>
-            <input id="username" type="text" placeholder="username"><br>
-            <div class="required" id="req_Firstname"></div>
-            <input id="Firstname" type="text" placeholder="Firstname"><br>
-            <div class="required" id="req_Lastname"></div>
-            <input id="Lastname" type="text" placeholder="Lastname"><br>
-            <div class="required" id="req_email"></div>
-            <input id="email" type="text" placeholder="email"> <br>
-            <div class="required" id="req_mobile"></div>
-            <input id="mobile" type="text" placeholder="mobile number"><br>
-            <input type="date" style="color: rgb(153, 151, 151);"><br>
-            <div class="required" id="req_password"></div>
-            <input id="password" type="password" placeholder="password"><br>
-            <div class="required" id="req_confirmPassword"></div>
-            <input id="confirmPassword" type="password" placeholder="confirm password"><br>
-            <button type="submit" id="submit">Submit</button>
-            <button type="reset" id="reset" onclick="clearRequired()">Reset</button>
-        </form>
-    </div>
-    <div class="footer">
-        <p>Copyright &copy; 2019 Nitish Jadia</p>
+    <div class="container">
+        <div class="logo">
+            <img src="opensource.png" alt="Open Source Community Logo" height="180" width="210">
+        </div>
+        <h1 class="heading">
+            Join the community today! </h1>
+        <div class="form">
+            <form name="registerForm" action="#" method="GET" onsubmit="return validateForm()">
+                <!-- username -->
+                <div class="required" id="req_username"></div>
+                <input id="username" type="text" placeholder="username"><br>
+                <!-- Firstname -->
+                <div class="required" id="req_Firstname"></div>
+                <input id="Firstname" type="text" placeholder="Firstname"><br>
+                <!-- Lastname -->
+                <div class="required" id="req_Lastname"></div>
+                <input id="Lastname" type="text" placeholder="Lastname"><br>
+                <!-- email -->
+                <div class="required" id="req_email"></div>
+                <input id="email" type="text" placeholder="email"> <br>
+                <!-- mobile -->
+                <div class="required" id="req_mobile"></div>
+                <input id="mobile" type="text" placeholder="mobile number"><br>
+                <!-- date -->
+                <input type="date" style="color: rgb(153, 151, 151);"><br>
+                <!-- password -->
+                <div class="required" id="req_password"></div>
+                <input id="password" type="password" placeholder="password"><br>
+                <div class="required" id="req_confirmPassword"></div>
+                <input id="confirmPassword" type="password" placeholder="confirm password"><br>
+                <!-- buttons -->
+                <button type="submit" id="submit">Submit</button>
+                <button type="reset" id="reset" onclick="clearRequired()">Reset</button>
+            </form>
+        </div>
+        <div class="footer">
+            <p>Copyright &copy; 2019 Nitish Jadia</p>
+        </div>
     </div>
 </body>
 

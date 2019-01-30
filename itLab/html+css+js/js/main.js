@@ -1,3 +1,7 @@
+/**
+ * Validate the input form against various conditions
+ * and display the remarks.
+ */
 function validateForm() {
     clearRequired(); // clear all previous alerts
     var flag = true;
@@ -61,6 +65,14 @@ function validateForm() {
         flag = false;
     }
 
+    // email check
+    var emailValue = document.getElementById('email').value;
+    var validEmail = /^[a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]+$/;
+    if (!emailValue.match(validEmail)) {
+        document.getElementById('req_email').innerHTML = "Please input a valid email";
+        flag = false;
+    }
+
     // mobile
     var mobilevalue = document.getElementById('mobile').value;
     if (!mobilevalue) {
@@ -102,6 +114,9 @@ function validateForm() {
         return false;
 }
 
+/**
+ * Clear red remarks when form is submitted again
+ */
 function clearRequired() {
     var list = document.getElementsByClassName('required');
     var i;

@@ -1,18 +1,28 @@
+/* html and .container are still not clearly defined */
+
 html {
-    margin-left: 32%;
+    width: 500px;
+    height: auto;
+    margin-left: 40%;
+}
+.container {
+    position: relative;
+    /* margin-left: 50%; */
 }
  
 .heading {
-    margin-left: 9%;
+    position:relative;
+    margin-left: 2%;
     color: rgb(88, 87, 87);
     font-family: 'ABeeZee';
 }
 
 .logo {
-    margin-left: 12%;
+    position: relative;
+    margin-left: 25%;
 }
 
-
+/* align form */
 .form {
     display: table-cell;
     vertical-align:middle;
@@ -22,6 +32,7 @@ html {
 
 }
 
+/* red underline in form entries */
 input {
     border: none;
     border-bottom: 3px solid;
@@ -33,11 +44,13 @@ input {
     padding: 10px;
 }
 
+/* red remarks when entered data is wrong */
 .required {
     color: red;
     font-size: 14px;
 }
 
+/* submit button */
 #submit {
     background-color: green;
     border: none;
@@ -56,6 +69,7 @@ input {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/* reset button */
 #reset {
     background-color: red;
     border: none;
@@ -74,16 +88,8 @@ input {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-select {
-    border-radius: 5px;
-    margin: 8px;
-    font-size: 25px;
-    padding: 5px;
-    border: none;
-}
-
 .footer {
     color: darkgray;
     margin-left: 20%;
-    margin-top: 50px;
+    margin-top: 20px;
 }
