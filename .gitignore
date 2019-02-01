@@ -1,3 +1,4 @@
 *.ignore
-.vscode
-/softwareEngineering/sentimentalAnalysis/tweepy/
+softwareEngineering/.vscode/
+softwareEngineering/sentimentalAnalysis/tweepy/
+node_modules/
