@@ -22,16 +22,16 @@
             <form name="registerForm" action="#" method="GET" onsubmit="return validateForm()">
                 <!-- username -->
                 <div class="required" id="req_username"></div>
-                <input id="username" type="text" placeholder="username"><br>
+                <input id="username" type="text" placeholder="username" required><br>
                 <!-- Firstname -->
                 <div class="required" id="req_Firstname"></div>
-                <input id="Firstname" type="text" placeholder="Firstname"><br>
+                <input id="Firstname" type="text" placeholder="Firstname" required><br>
                 <!-- Lastname -->
                 <div class="required" id="req_Lastname"></div>
-                <input id="Lastname" type="text" placeholder="Lastname"><br>
+                <input id="Lastname" type="text" placeholder="Lastname" required><br>
                 <!-- email -->
                 <div class="required" id="req_email"></div>
-                <input id="email" type="text" placeholder="email"> <br>
+                <input id="email" type="text" placeholder="email" required> <br>
                 <!-- mobile -->
                 <div class="required" id="req_mobile"></div>
                 <input id="mobile" type="text" placeholder="mobile number"><br>
@@ -39,9 +39,9 @@
                 <input type="date" style="color: rgb(153, 151, 151);"><br>
                 <!-- password -->
                 <div class="required" id="req_password"></div>
-                <input id="password" type="password" placeholder="password"><br>
+                <input id="password" type="password" placeholder="password" required><br>
                 <div class="required" id="req_confirmPassword"></div>
-                <input id="confirmPassword" type="password" placeholder="confirm password"><br>
+                <input id="confirmPassword" type="password" placeholder="confirm password" required><br>
                 <!-- buttons -->
                 <button type="submit" id="submit">Submit</button>
                 <button type="reset" id="reset" onclick="clearRequired()">Reset</button>
