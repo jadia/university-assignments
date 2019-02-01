@@ -7,10 +7,10 @@ function validateForm() {
     var flag = true;
     // username
     // if empty
-    if (!document.getElementById('username').value) {
-        document.getElementById('req_username').innerHTML = "*required field";
-        flag = false;
-    }
+    // if (!document.getElementById('username').value) {
+    //     document.getElementById('req_username').innerHTML = "*required field";
+    //     flag = false;
+    // }
 
     // min length
     if (document.getElementById('username').length < 3) {
@@ -19,11 +19,11 @@ function validateForm() {
     }
 
     // First name
-    var flength = document.getElementById('Firstname').value.length;
-    if (!document.getElementById('Firstname').value) {
-        document.getElementById('req_Firstname').innerHTML = "*required field";
-        flag = false;
-    }
+    const flength = document.getElementById('Firstname').value.length;
+    // if (!document.getElementById('Firstname').value) {
+    //     document.getElementById('req_Firstname').innerHTML = "*required field";
+    //     flag = false;    
+    // }
 
     // min and max length
     if (flength < 3 || flength > 15) {
@@ -41,10 +41,10 @@ function validateForm() {
 
 
     // Last name
-    if (!document.getElementById('Lastname').value) {
-        document.getElementById('req_Lastname').innerHTML = "*required field";
-        flag = false;
-    }
+    // if (!document.getElementById('Lastname').value) {
+    //     document.getElementById('req_Lastname').innerHTML = "*required field";
+    //     flag = false;
+    // }
     var llength = document.getElementById('Lastname').value.length;
     // min and max length
     if (llength < 3 || llength > 15) {
@@ -60,10 +60,10 @@ function validateForm() {
     }
 
     // email
-    if (!document.getElementById('email').value) {
-        document.getElementById('req_email').innerHTML = "*required field";
-        flag = false;
-    }
+    // if (!document.getElementById('email').value) {
+    //     document.getElementById('req_email').innerHTML = "*required field";
+    //     flag = false;
+    // }
 
     // email check
     var emailValue = document.getElementById('email').value;
@@ -75,22 +75,22 @@ function validateForm() {
 
     // mobile
     var mobilevalue = document.getElementById('mobile').value;
-    if (!mobilevalue) {
-        document.getElementById('req_mobile').innerHTML = "*required field";
-        flag = false;
-    }
+    // if (!mobilevalue) {
+    //     document.getElementById('req_mobile').innerHTML = "*required field";
+    //     flag = false;
+    // }
 
-    if (isNaN(mobilevalue) || mobilevalue < 1 || mobilevalue.length < 10) {
+    if (isNaN(mobilevalue) || mobilevalue < 1 || mobilevalue.length != 10) {
         document.getElementById('req_mobile').innerHTML = "Please enter a valid Mobile number.";
         flag = false;
     }
 
     // password
     var passwd = document.getElementById('password').value;
-    if (!passwd) {
-        document.getElementById('req_password').innerHTML = "*required field";
-        flag = false;
-    }
+    // if (!passwd) {
+    //     document.getElementById('req_password').innerHTML = "*required field";
+    //     flag = false;
+    // }
 
     // password length
     if (passwd.length < 6) {
